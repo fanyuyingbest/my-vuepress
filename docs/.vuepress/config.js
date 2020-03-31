@@ -21,21 +21,8 @@ module.exports = {
           {text: '算法题库', link: '/algorithm/'},
           {text: '微博', link: 'https://baidu.com'} 
         ],
-        sidebar: [
-          {
-            title: '开发指南',
-            collapsable: false, //是否展开
-          },
-              ['./guide/install/install','安装'],
-             ['./guide/started/started','快速上手'],
-          {
-            title: '组件',
-            collapsable: false
-          },
-          ['./guide/icon/icon','icon'],
-          ]
-        },
-        //sidebarDepth: 0,
+        sidebar:'auto' ,
+        sidebarDepth: 2,
     },
     //sidebar: 'auto', // 侧边栏配置
     //sidebarDepth: 2, // 侧边栏显示2级
