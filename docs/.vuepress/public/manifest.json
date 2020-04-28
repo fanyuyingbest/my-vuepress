@@ -1,10 +1,10 @@
 {
-  "name": "张三",
-  "short_name": "张三",
+  "name": "lisa",
+  "short_name": "lisa",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#2196f3",
-  "description": "张三的个人主页",
+  "description": "lisa的个人主页",
   "theme_color": "blue",
   "icons": [
     {

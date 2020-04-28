@@ -16,21 +16,7 @@ module.exports = {
     ga: '',
     evergreen: true,
     themeConfig: {
-        nav: [
-          {text: '前端基础', link: '/guide/' },
-          {text: '算法题库', link: '/algorithm/'},
-          {text: '微博', link: 'https://baidu.com'} 
-        ],
-        sidebar:'auto' ,
-        sidebarDepth: 2,
+      nav:require('./nav'),
+      sidebar: require('./sidebar'),
     },
-    //sidebar: 'auto', // 侧边栏配置
-    //sidebarDepth: 2, // 侧边栏显示2级
-    // configureWebpack: {
-    //   resolve: {
-    //     alias: {
-    //       '@alias': 'path/to/some/dir'
-    //     }
-    //   }
-    // }
 }

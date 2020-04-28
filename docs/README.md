@@ -1,14 +1,14 @@
 ---
 home: true
 heroImage: /logo.jpg
-actionText: 快速上手 →
-actionLink: /guide/
+actionText: 快速访问 →
+actionLink: /senior-js/guide/
 features:
-- title: 简洁至上
-  details: 以 Markdown 为中心的项目结构，以最少的配置帮助你专注于写作。
-- title: Vue驱动
-  details: 享受 Vue + webpack 的开发体验，在 Markdown 中使用 Vue 组件，同时可以使用 Vue 来开发自定义主题。
-- title: 高性能
-  details: VuePress 为每个页面预渲染生成静态的 HTML，同时在页面被加载的时候，将作为 SPA 运行。
-footer: MIT Licensed | Copyright © 2018-present xxxxxx
+- title: 工作总结
+  details: 实践出真知，每一个bug都是都是成长，每一次灵感闪现都是突破。
+- title: 自学记录
+  details: 胡适说：读书需要眼到、心到，口到还有手到，阅读他人文章，观看优秀视频，用自己的双手输出才是自己的东西。
+- title: 读书笔记
+  details: 要读书，读好书，破万卷书，将书中的精华做成文字，这本书才有意义。
+footer: MIT Licensed | Copyright © 2018-present 一只无聊的柠檬
 ---
