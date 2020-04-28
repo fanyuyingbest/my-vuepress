@@ -9,9 +9,10 @@ test git two
 
 ## 打包
 - vuePress文件夹
- - vuepress build
- - copy dist to lisaBlog
- - cd to lisaBlog
+ - 执行打包命令，生成对应的包：vuepress build docs
+ - 进入文件夹：：cd docs/.vuepress/dist(记住一定要是这个文件夹啊啊啊)
+- lisaBlog 文件夹
+ - 进入文件夹 lisaBlog
  - git add .
  - git commit -m ''
  - git push origin master
