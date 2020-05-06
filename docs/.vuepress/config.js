@@ -18,5 +18,6 @@ module.exports = {
     themeConfig: {
       nav:require('./nav'),
       sidebar: require('./sidebar'),
+      sidebarDepth:1,
     },
 }

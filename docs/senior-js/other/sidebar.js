@@ -1,10 +1,10 @@
 module.exports = [
     {
-        title: 'page-3',
+        title: '杂谈',
         collapsable: true,
         children: [
-            '/senior-js/other/1',
-            '/senior-js/other/2',
+            '/senior-js/other/2020/1',
+            // '/senior-js/other/2',
         ]
     }
   ]

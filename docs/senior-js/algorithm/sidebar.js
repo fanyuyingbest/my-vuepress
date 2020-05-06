@@ -1,10 +1,10 @@
 module.exports = [
   {
-      title: 'page-1',
+      title: '自学记录',
       collapsable: true,
       children: [
-          '/senior-js/algorithm/1',
-          '/senior-js/algorithm/2',
+          '/senior-js/algorithm/2020/1',
+          // '/senior-js/algorithm/2',
       ]
   },
 //   {

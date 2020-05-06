@@ -1,10 +1,5 @@
-## This is guide
-content...
-
-### title3
-content...
-
-### title3-01
-
-## small title
-content...
+## 杂谈
+> 所见所听所想
+> 一瞬间的感悟
+> 影评
+> 日常感悟，自省

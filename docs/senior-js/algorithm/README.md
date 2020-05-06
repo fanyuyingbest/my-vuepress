@@ -1,10 +1,5 @@
-## This is read1
-content...
-
-### title3
-content...
-
-### title3-01
-
-## read2
-content...
+## 自学记录
+ > 读书需要眼到、心到，口到还有手到<br/>
+ > 阅读他人文章<br/>
+ > 所学新技能<br/>
+ > 用自己的双手输出才是自己的东西<br/>
