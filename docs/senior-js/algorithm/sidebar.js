@@ -1,9 +1,9 @@
 module.exports = [
   {
-      title: '自学记录',
+      title: '2020年',
       collapsable: true,
       children: [
-          '/senior-js/algorithm/2020/1',
+          '/senior-js/algorithm/2020/05-07-markdown',
           // '/senior-js/algorithm/2',
       ]
   },

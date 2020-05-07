@@ -1,9 +1,9 @@
 module.exports = [
     {
-        title: '杂谈',
+        title: '2020年',
         collapsable: true,
         children: [
-            '/senior-js/other/2020/1',
+            '/senior-js/other/2020/05-07-dream',
             // '/senior-js/other/2',
         ]
     }
