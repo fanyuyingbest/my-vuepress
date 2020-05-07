@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /logo.jpg
+heroImage: /img/logo.jpg
 actionText: 快速访问 →
 actionLink: /senior-js/guide/
 features:

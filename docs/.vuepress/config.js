@@ -4,7 +4,7 @@ module.exports = {
     head: [
         ['link', {
             rel: 'icon',
-            href: `/logo.jpg`
+            href: `/img/logo.jpg`
         }]
     ],
     base: '/', // 这是部署到github相关的配置
