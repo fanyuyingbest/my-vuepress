@@ -4,7 +4,7 @@ module.exports = [
         collapsable: true,
         path: '/senior-js/guide/', 
         children: [
-            '/senior-js/guide/2020/05-08-total',
+            '/senior-js/guide/2020/05-12-zui1',
         ]
     }
   ]
