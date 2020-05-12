@@ -18,3 +18,7 @@ test git two
  - git commit -m ''
  - git push origin master
  - over
+
+ ## 拉取远端代码
+
+ - git pull origin master
