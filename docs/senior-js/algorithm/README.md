@@ -1,1 +1,1 @@
-![知识体系](/img/algorithm-1.png)
+![知识体系](/img/2020/algorithm/algorithm-1.png)
