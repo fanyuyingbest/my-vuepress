@@ -19,7 +19,8 @@ module.exports = [
     path: '/senior-js/algorithm/data-structure/',
     sidebarDepth: 1,    // 可选的, 默认值是 1
     children: [
-        '/senior-js/algorithm/data-structure/1',
+        '/senior-js/algorithm/data-structure/data-1',
+        '/senior-js/algorithm/data-structure/data-2',
     ]
 },
 ]
