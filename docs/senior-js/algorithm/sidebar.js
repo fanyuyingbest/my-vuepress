@@ -24,6 +24,7 @@ module.exports = [
         '/senior-js/algorithm/data-structure/data-3',
         '/senior-js/algorithm/data-structure/data-4',
         '/senior-js/algorithm/data-structure/data-5',
+        '/senior-js/algorithm/data-structure/data-6',
     ]
 },
 ]
