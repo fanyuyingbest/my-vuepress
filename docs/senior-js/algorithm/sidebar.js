@@ -27,6 +27,16 @@ module.exports = [
         '/senior-js/algorithm/data-structure/data-6',
         '/senior-js/algorithm/data-structure/data-7',
         '/senior-js/algorithm/data-structure/data-8',
+        '/senior-js/algorithm/data-structure/data-9',
     ]
-},
+ },
+ {
+    title: '每日一题',
+    collapsable: true,
+    path: '/senior-js/algorithm/training/',
+    sidebarDepth: 1,    // 可选的, 默认值是 1
+    children: [
+        '/senior-js/algorithm/training/q-1',
+    ]
+ },
 ]
