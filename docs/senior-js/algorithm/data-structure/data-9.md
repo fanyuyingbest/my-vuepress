@@ -76,7 +76,7 @@
    inOrderTraverse(node.right);
  }
 
- //中序排列
+ //后序排列
  function postOrderTraverse(node){
    if(node == null){
      return
