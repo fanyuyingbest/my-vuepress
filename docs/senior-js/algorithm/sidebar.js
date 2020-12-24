@@ -8,13 +8,15 @@ module.exports = [
  {
       title: '2020年',
       collapsable: true,
+      path: '/senior-js/algorithm/2020/',
       sidebarDepth: 1,    // 可选的, 默认值是 1
       children: [
           '/senior-js/algorithm/2020/other/05-07-markdown',
+          '/senior-js/algorithm/2020/webpack/12-22-webpack',
       ]
   },
   {
-    title: '数据结构',
+    title: '数据结构-拉钩教育',
     collapsable: true,
     path: '/senior-js/algorithm/data-structure/',
     sidebarDepth: 1,    // 可选的, 默认值是 1
@@ -33,6 +35,15 @@ module.exports = [
         '/senior-js/algorithm/data-structure/data-12',
         '/senior-js/algorithm/data-structure/data-13',
         '/senior-js/algorithm/data-structure/data-14',
+    ]
+ },
+ {
+    title: '数据结构-go',
+    collapsable: true,
+    path: '/senior-js/algorithm/go/',
+    sidebarDepth: 1,    // 可选的, 默认值是 1
+    children: [
+        '/senior-js/algorithm/go/data-1',
     ]
  },
  {

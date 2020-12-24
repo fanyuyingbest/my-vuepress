@@ -13,3 +13,9 @@
 - 不说不该说的话，不做不该做的事，专注自己的工作
 - 不好管闲事，不好为人师，有问题会来主动找你
 - 不把生活中的情绪带到工作中，工作中不能参杂其他情绪
+
+# 相关链接
+- 博客园:[点击跳转主页](https://www.cnblogs.com/fanyuying-web/)
+- CSDN: [点击跳转主页](https://i.csdn.net/#/uc/profile)
+- freeCodeCamp: [跳转主页](https://www.freecodecamp.one/)
+- 牛客网：[跳转主页](https://www.nowcoder.com/home)
