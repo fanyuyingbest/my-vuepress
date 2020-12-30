@@ -8,7 +8,7 @@ module.exports = [
  {
       title: '2020年',
       collapsable: true,
-      path: '/senior-js/algorithm/2020/',
+      // path: '/senior-js/algorithm/2020/',
       sidebarDepth: 1,    // 可选的, 默认值是 1
       children: [
           '/senior-js/algorithm/2020/05-07-markdown',
@@ -26,7 +26,7 @@ module.exports = [
   //   children: [
   //       '/senior-js/algorithm/2020/05-07-markdown',
   //       '/senior-js/algorithm/2020/12-22-webpack',
-  //       '/senior-js/algorithm/2020/12-30-vuepanel'
+  //       '/senior-js/algorithm/2020/12-30-vulpine'
   //   ]
   // },
   {
