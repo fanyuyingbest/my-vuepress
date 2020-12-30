@@ -30,6 +30,9 @@ define() 和 require() 的区别是，define()必须要在回调函数中返回�
 
 ## 3.上手一个简单的 SPA 应用
 
+<p style="color:red">PS:在写下 new webpack.XXXX 时，总是会报 XXXX undfine,主要原因是在引入时，写成了 const {webpack} = requrie('webpack)
+只要去掉 webpack 外面的打括号就可以了</p>
+
 ### 3-1 安装 node
 
 ### 3-2 初始化一个项目
@@ -362,3 +365,212 @@ eslint-loader 用于在 webpack 编译的时候检查代码，如果有错误，
   > 还有一点，不要把个人的配置文件提交到 git,所以在配置文件中忽略
 
 ### 4-9 webpack-serve 处理带后缀名的文件的特殊规则
+
+> 当处理带有后缀名的请求，connect-history-api-fallback 会认为它是一个实际存在的文件，找不到时不会 fallback 到 html 文件，而是返回 404
+> 要处理这种情况，需要将配置项 disableDotRule:true 的规则禁用，当访问文件不存在时可以 fallback 到 index.html 文件中
+
+```
+ module.exports = {
+   add: app => {
+     app.use(convert(history({
+       disableDotRulr: true,
+       htmlAcceptHeaders: ['text/html','application/xhtml+xml']
+     })))
+   }
+ }
+
+```
+
+### 4-10 代码中插入环境变量
+
+> 业务代码中，有些变量在开发环境和生产环境是不一样的，比如域名，api 地址，开发环境还需要打印调试信息等
+
+> 我们可以使用 DefinePlugin 插件在打包时往代码中插入需要的环境变量
+
+```
+  new webpack.DefinePlugin({
+    DEBUG:dev,
+    VERSION: JSON.stringify(pkgInfo.version),
+    CONFIG:  JSON.stringify(config.runtimeConfig)
+  })
+```
+
+> DefinePlugin 插件原理比较简单，如过在代码中写 consolo.log(DEBUG),它会做类似的处理：console.log(DEBUG).replace("DEBUG",true)
+> 最后生成 console.log(true)
+
+需要注意的一点: 这里的 VERSION,如果我们不对 pkgInfo.version 做 JSON.stringify()处理，最后就会生成 console.log(1.0.0),做了转变后，才会将带上引号，webpack 在打包压缩时，会对代码做优化
+
+### 4-11 简化 import 路径
+
+> 文件 a 引入文件 b 时，b 的路径相对于 a 的文件目录，如果 ab 文件在不同目录且 b 藏的比较深时，写起来就会比较麻烦
+
+```
+ import b from '../../../components/b'
+```
+
+> 为了方便，我们可以定义一个路径别名
+
+```
+ resolve: {
+   alias: {
+     '~': resolve(__dirname, 'src')
+   }
+ }
+```
+
+> 这样我们可以以 src 目录为基础路径来 import 文件了
+
+```
+ import b form '~/components/b'
+```
+
+> html 文件中 img 标签没办法使用这个功能，但是在 html-loader 中的一个 root 参数可以作为目录解析
+
+```
+  root:resolve(__dirname,'src')
+
+  <img src="/favicon.png">
+```
+
+> 此时就不需要担心文件和文件路径的问题了
+> 但是此处会有一个问题，配置好 root 后，html-loader 会将注释代码 <!-- -->里面的内容也解析出来，要注意一下
+
+### 4-12 优化 babel 编译后的代码性能
+
+> babel 编译后的代码一般会造成性能损失，babel 提供了一个 loose 的选项，编译后的代码不需要完全遵守 ES6,简化编译后的代码，会提高代码的执行效率
+
+```
+ "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "loose": true
+        }
+      ],
+      "stage-2"
+    ]
+  },
+```
+
+> 注意：这样做就有兼容性的风险，导致源码的执行结果和编译后的结果不一致，如果代码没有遇到实际的效率瓶颈，尽量不要使用该模式
+
+### 4-13 使用 webpack 自带的 ES6 模块处理功能
+
+> 按照目前的配置，babel 会把 ES6 模块自定义转化为 CommonJS 自定义，但是 webpack 自己可以处理 import 和 export，并且 webpack 处理 import 时会做代码优化，把没用到的代码删除，因此我们可以通过 babel 提供的 module：false 选项把 commonjs 模块功能关掉
+
+```
+ "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "modules": false
+        }
+      ],
+      "stage-2"
+    ]
+  },
+```
+
+### 4-15 使用 autoprefixer 自动创建 css 的 vendor prefixes
+
+> css 有一个麻烦的问题，比较新的 css 属性在各个浏览器中加前缀，我们可以使用 autoprefixer 工具自动创建这些浏览器规则：
+
+```
+ :fullscreen a{
+   display: flex
+ }
+```
+
+> autoprefixer 就会自动编译为
+
+```
+ :webpack-full-screen a{
+   display: -webkit-box;
+   display: flex
+ }
+ :-moz-full-screen a {
+    display: flex
+  }
+  :-ms-fullscreen a {
+      display: -ms-flexbox;
+      display: flex
+  }
+  :fullscreen a {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex
+  }
+```
+
+> 首先，安装
+
+```
+ npm install postcss-loader autoprefixer --save-dev
+```
+
+> autoprefixer 是一个 postcss 插件，所以要安装 postcss 的 webpack loader；修改一下 webpack 的 css rule
+
+```
+ {
+    // 匹配css文件
+    test: /\.css$/,
+    use: ['css-loader', 'style-loader', 'postcss-loader']
+  },
+```
+
+> 然后创建文件 postcss.config.js
+
+```
+ module.exports = {
+   plugins:[
+     require('autoprefixer')()
+   ]
+ }
+```
+
+## 5 使用 webpack 打包多页面应用(Multiple-Page Application)
+
+> 多页面应用也可以用 webpack 打包，MPA 意味着，并不是每一个单一的 html 入口和 js 入口，而是每一个页面对应一个 html 和多个 js，所以可以将结构改为
+
+```
+ |--- dist
+ |--- package.json
+ |--- node_modules
+ |--- src
+ |    |--- components
+ |    |--- shared
+ |    |--- favicon.ico
+ |    |-- pages                          页面放这里
+ |          |--- foo                     编译后生成 http://localhost:8080/foo.html
+ |          |     |--- index.html
+ |          |     |--- index.js
+ |          |     |--- style.css
+ |          |     |--- pic.png
+ |          |--- bar                     编译后生成 http://localhost:8080/bar.html
+ |                |--- index.html
+ |                |--- index.js
+ |                |--- style.css
+ |                |--- baz               编译后生成 http://localhost:8080/bar/baz.html
+ |                      |--- index.html
+ |                      |--- index.js
+ |                      |--- style.css
+ |--- webpack.config.js
+
+```
+
+> 这里的每个页面都是从`<!DOCTYPE html>` 开头 到 `</html>` 结束的页面，这里的文件都是用 html-webpack-plugin 处理，index.js 是每个页面的业务逻辑，作为每个页面的入口 js 配置到 entry 中，这里需要 glob 库来把这些文件都筛选出来批量处理，为了使 optimization.splitChunks 和 optimization.runtimeChunk 功能，这里需要安装几个 webpack 插件
+
+```
+ npm install glob html-webpack-include-sibling-chunks-plugin uglifyjs-webpack-plugin mini-css-extract-plugin optimize-css-assets-webpack-plugin --save-dev
+```
+
+> webpack 需要修改,entry 和 htmlPlugins 也会遍历 pages 目录生成
+
+> 在开发环境中，为了在修改 html 文件后，网页可以自动刷新，还可以把 html 文件加入到 entry 中，但是不要在生成环境这样处理
+
+## 6.总结
+
+> 这次主要是根据 [查看原文章](https://juejin.cn/post/6844903650939109384#heading-25)
+> 做参考，对 webpack 做了一次从零开始的配置，如果需要编译 react/vue 时，无非是安装一些 loader 和 plugin
