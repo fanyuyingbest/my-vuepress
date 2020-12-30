@@ -11,10 +11,24 @@ module.exports = [
       path: '/senior-js/algorithm/2020/',
       sidebarDepth: 1,    // 可选的, 默认值是 1
       children: [
-          '/senior-js/algorithm/2020/other/05-07-markdown',
-          '/senior-js/algorithm/2020/webpack/12-22-webpack',
+          '/senior-js/algorithm/2020/05-07-markdown',
+          '/senior-js/algorithm/2020/12-22-webpack',
+          '/senior-js/algorithm/2020/12-30-vuepanel'
       ]
   },
+  // 2021主要完成react+ts的一个后台 一个h5页面 一个小程序的开发，一个unapp，以及源码的阅读
+  // 如果时间充裕，是否可以在搞搞后端和mysql
+  // {
+  //   title: '2021年',
+  //   collapsable: true,
+  //   path: '/senior-js/algorithm/2020/',
+  //   sidebarDepth: 1,    // 可选的, 默认值是 1
+  //   children: [
+  //       '/senior-js/algorithm/2020/05-07-markdown',
+  //       '/senior-js/algorithm/2020/12-22-webpack',
+  //       '/senior-js/algorithm/2020/12-30-vuepanel'
+  //   ]
+  // },
   {
     title: '数据结构-拉钩教育',
     collapsable: true,
@@ -35,15 +49,6 @@ module.exports = [
         '/senior-js/algorithm/data-structure/data-12',
         '/senior-js/algorithm/data-structure/data-13',
         '/senior-js/algorithm/data-structure/data-14',
-    ]
- },
- {
-    title: '数据结构-go',
-    collapsable: true,
-    path: '/senior-js/algorithm/go/',
-    sidebarDepth: 1,    // 可选的, 默认值是 1
-    children: [
-        '/senior-js/algorithm/go/data-1',
     ]
  },
  {
