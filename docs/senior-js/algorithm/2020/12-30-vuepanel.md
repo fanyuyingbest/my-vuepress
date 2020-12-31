@@ -101,7 +101,7 @@ components 主要用来放置全局公用组件，比如上传，富文本等，
   import getArticle from 'api/article'
 ```
 
-## 4.ESLint
+## 4. ESLint
 
 > 代码规范很重要，可以避免基本语法的错误，也保证了代码的可读性，推荐使用 eslint+vscode 写 vue
 
@@ -111,3 +111,91 @@ components 主要用来放置全局公用组件，比如上传，富文本等，
 [vscode 插件和配置推荐](https://github.com/varHarrie/varharrie.github.io/issues/10)
 
 [eslint 规则地址](https://github.com/PanJiaChen/vue-element-admin/blob/master/.eslintrc.js)
+
+## 5. 封装 axios
+
+> 工作中经常遇到线上出现 bug，但是测试环境很难模拟的问题，可以通过简单的配置就可以在本地调试线上环境，以下就是对 axios 的封装,先来看代码
+
+```
+  import axios from 'axios'
+  import {Message} from 'element-ui
+  import store form '@/store'
+  import { getToken } from '@/utils/auth'
+
+  //创建axios实例
+  const serve = axios.create({
+    baseURL: process.env.BASE_API, //api的base_url
+    timeout: 5000 //请求超时时间
+  })
+
+  //request 拦截器
+  service.interceptors.request.use(config => {
+    if(store.getter.token){
+      config.headers['X-Token'] = getToken() //让每一个请求都携带token
+    }
+    return config
+  }, error => {
+    console.log(error)
+    Promise.reject(error)
+  })
+
+  // response拦截器
+  service.interceptors.response.use(
+    response => response,
+    // 此处可以对返回的code做不同的功能处理
+    // const res = response.data;
+    // if(res.code !== 200){...}
+
+    error => {
+      console.log('err' + error)
+      Message({
+        message:error.message,
+        type: 'error',
+        duration: 5 * 1000
+      })
+      return Promise.reject(error)
+    }
+  )
+```
+
+```
+  // 代码的使用
+  import request from '@/utils/request'
+
+  export function getInfo(){
+    return request({
+      url: '/user/info',
+      method: 'get',
+      params
+    })
+  }
+```
+
+> 后台项目，每一个请求都需要带 token 来验证权限，这样的封装我们就可以不用每次都手动来塞 token，或者做一些异常处理；而且因为需要根据不同环境来处理 api，线上出问题时，只需要配置一下 @/config/dev.env.js,再重启一下服务，就能再本地模拟线上环境了
+
+```
+ module.exports = {
+   NODE_ENV: "development",
+   BASE_API: "https://api-dev", // 修改为"https://api-prod"
+   APP_ORIGIN: "https://xxxx.com" //
+ }
+```
+
+> axios 还可以执行多个并发请求，拦截器，需要花时间研究
+
+## 6. 多环境
+
+vue-cli 默认只提供 dev 和 prd 两个环境，真实开发的时候会存在多个，需要修改配置
+
+```
+ "build:prd": "NODE_ENV=production node build/build.js",
+ "build:stg": "NODE_ENV=stg node build/build.js"
+```
+
+> 之后在代码中自行判断
+
+```
+ var env = process.env.NODE_ENV === 'production' ? config.build.prodEnv : config.build.sitEnv
+```
+
+ps: 后续内容参考 [点击查看](https://juejin.cn/post/6844903476661583880) 后续只按照文档开始做项目(提高效率)
