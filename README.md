@@ -22,3 +22,7 @@ test git two
  ## 拉取远端代码
 
  - git pull origin master
+
+## 修改提交用户
+- git config --global user.name username
+- git config --global user.email username@email.com
